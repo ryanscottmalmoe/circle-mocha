@@ -27,7 +27,7 @@ jobs:
       - store_test_results:
           path: ~/results
       - store_artifacts:
-          path: ~/results
+          path: ~/results/test-run.json
 
                 
 workflows:
