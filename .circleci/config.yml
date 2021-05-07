@@ -11,20 +11,7 @@ jobs:
     steps:
       - checkout
       - run: npm i
-      - run: sudo npm i -g mocha-obsidian-reporter
-      - run: npm test
-      - store_test_results:
-          path: results
-      - store_artifacts:
-          path: results
-
-  report:
-    docker:
-      - image: circleci/node:11.15.0
-    steps:
-      - checkout
-      - run: npm i
-      - run: sudo npm i -g obsidian-cli mocha
+      - run: sudo npm i -g mocha-obsidian-reporter mocha
       - run: mkdir ~/results
       - run:
           command: mocha test --reporter mocha-obsidian-reporter
@@ -35,14 +22,25 @@ jobs:
           path: ~/results
       - store_artifacts:
           path: ~/results
+      # - run: npm test
+      # - store_test_results:
+      #     path: results
+      # - store_artifacts:
+      #     path: results
 
-      # - run: pwd
-      # - run: obsidian testruns import results/test-run.json
-      #     --environment $OBSIDIAN_ENVIRONMENT_ID
-      #     --project $OBSIDIAN_PROJECT_ID
-      #     --apikey $OBSIDIAN_API_KEY
-      #     --apisecret $OBSIDIAN_API_SECRET_KEY
-      #     --tags "unit, circleci"
+  report:
+    docker:
+      - image: circleci/node:11.15.0
+    steps:
+      - checkout
+      - run: npm i
+      - run: sudo npm i -g obsidian-cli
+      - run: obsidian testruns import results/test-run.json
+          --environment $OBSIDIAN_ENVIRONMENT_ID
+          --project $OBSIDIAN_PROJECT_ID
+          --apikey $OBSIDIAN_API_KEY
+          --apisecret $OBSIDIAN_API_SECRET_KEY
+          --tags "unit, circleci"
                 
 workflows:
   version: 2
