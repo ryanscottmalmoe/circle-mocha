@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run: npm i
       - run: sudo npm i -g mocha-obsidian-reporter mocha
-      - run: mkdir ~/results
+      # - run: mkdir ~/results
       - run: npm test
       - persist_to_workspace:
           root: ~/
@@ -22,11 +22,6 @@ jobs:
          path: results/test-run.json
       - store_artifacts:
           path: results/test-run.json
-      # - run: npm test
-      # - store_test_results:
-      #     path: results
-      # - store_artifacts:
-      #     path: results
 
   report:
     docker:
