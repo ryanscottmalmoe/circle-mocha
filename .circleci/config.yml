@@ -14,16 +14,10 @@ jobs:
       - run: sudo npm i -g mocha-obsidian-reporter mocha
       - run: mkdir ~/results
       - run: npm test
-      # - run:
-      #     command: mocha test --reporter mocha-obsidian-reporter
-      #     environment:
-      #       MOCHA_FILE: ~/results/test-run.json
-      #     when: always
       - store_test_results:
          path: results/test-run.json
       - store_artifacts:
           path: results/test-run.json
-          destination: ~/results
       # - run: npm test
       # - store_test_results:
       #     path: results
