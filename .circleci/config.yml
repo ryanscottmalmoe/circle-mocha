@@ -12,7 +12,6 @@ jobs:
       - checkout
       - run: npm i
       - run: sudo npm i -g mocha-obsidian-reporter mocha
-      # - run: mkdir ~/results
       - run: npm test
       - persist_to_workspace:
           root: ~/
