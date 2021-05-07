@@ -15,9 +15,9 @@ jobs:
       - run: mkdir ~/results
       - run: npm test
       - store_test_results:
-         path: /home/circleci/project/results/test-run.json
+         path: results/test-run.json
       - store_artifacts:
-          path: /home/circleci/project/results/test-run.json
+          path: results/test-run.json
       # - run: npm test
       # - store_test_results:
       #     path: results
@@ -31,7 +31,7 @@ jobs:
       - checkout
       - run: npm i
       - run: sudo npm i -g obsidian-cli
-      - run: obsidian testruns import /home/circleci/project/results/test-run.json
+      - run: obsidian testruns import results/test-run.json
           --environment $OBSIDIAN_ENVIRONMENT_ID
           --project $OBSIDIAN_PROJECT_ID
           --apikey $OBSIDIAN_API_KEY
@@ -44,6 +44,8 @@ workflows:
     jobs:
       - test
       - report:
+          requires:
+            - test
           context:
             - obsidian
 
