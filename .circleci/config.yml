@@ -12,9 +12,18 @@ workflows:
           # This is the node version to use for the `cimg/node` tag
           # Relevant tags can be found on the CircleCI Developer Hub
           # https://circleci.com/developer/images/image/cimg/node
-    steps:
-       - store_test_results:
-              path: results
+          steps:
+            - checkout
+            - run: npm install
+            - run: mkdir ~/results
+            - run:
+                command: npm test
+                when: always
+            - store_test_results:
+                path: ~/results
+            - store_artifacts:
+                path: ~/results
+
 
 
                 
