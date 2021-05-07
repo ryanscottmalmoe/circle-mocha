@@ -12,13 +12,24 @@ jobs:
       - checkout
       - run: npm i
       - run: sudo npm i -g mocha-obsidian-reporter
+      - run: mkdir ~/results
       - run:
-          command: npm test
+          command: mocha test --reporter mocha-obsidian-reporter
+          environment:
+            MOCHA_FILE: ~/results/test-run.json
           when: always
       - store_test_results:
           path: ~/results
       - store_artifacts:
           path: ~/results
+
+      # - run:
+      #     command: npm test
+      #     when: always
+      # - store_test_results:
+      #     path: results
+      # - store_artifacts:
+      #     path: results
 
   report:
     docker:

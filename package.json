@@ -4,7 +4,7 @@
   "description": "This is an example test project for using circle ci to upload to Obsidian.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test --reporter mocha-obsidian-reporter --reporter-options mochaFile=~/results/test-run.json"
+    "test": "mocha test --reporter mocha-obsidian-reporter --reporter-options mochaFile=./results/test-run.json"
   },
   "repository": {
     "type": "git",
