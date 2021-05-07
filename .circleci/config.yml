@@ -30,11 +30,11 @@ jobs:
       - run: npm i
       - run: sudo npm i -g obsidian-cli
       - run: obsidian testruns import results/test-run.json
-        --environment $OBSIDIAN_ENVIRONMENT_ID
-        --project $OBSIDIAN_PROJECT_ID
-        --apikey $OBSIDIAN_API_KEY
-        --apisecret $OBSIDIAN_API_SECRET_KEY
-        --tags "unit, circleci"
+          --environment $OBSIDIAN_ENVIRONMENT_ID
+          --project $OBSIDIAN_PROJECT_ID
+          --apikey $OBSIDIAN_API_KEY
+          --apisecret $OBSIDIAN_API_SECRET_KEY
+          --tags "unit, circleci"
       - run:
           command: npm test
           when: always
@@ -49,7 +49,7 @@ workflows:
   test:
     jobs:
       - test
-      - report
+      - report:
           context:
             - obsidian
 
