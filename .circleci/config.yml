@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - run: npm i
-      - run: sudo npm i -g mocha-obsidian-reporter
+      - run: sudo npm i -g mocha-obsidian-reporter mocha
       - run: mkdir ~/results
       - run:
           command: mocha test --reporter mocha-obsidian-reporter
