@@ -24,14 +24,25 @@ jobs:
     steps:
       - checkout
       - run: npm i
-      - run: sudo npm i -g obsidian-cli
-      - run: pwd
-      - run: obsidian testruns import results/test-run.json
-          --environment $OBSIDIAN_ENVIRONMENT_ID
-          --project $OBSIDIAN_PROJECT_ID
-          --apikey $OBSIDIAN_API_KEY
-          --apisecret $OBSIDIAN_API_SECRET_KEY
-          --tags "unit, circleci"
+      - run: sudo npm i -g obsidian-cli mocha
+      - run: mkdir ~/results
+      - run:
+          command: mocha test --reporter mocha-obsidian-reporter
+          environment:
+            MOCHA_FILE: ~/results/test-run.json
+          when: always
+      - store_test_results:
+          path: ~/results
+      - store_artifacts:
+          path: ~/results
+
+      # - run: pwd
+      # - run: obsidian testruns import results/test-run.json
+      #     --environment $OBSIDIAN_ENVIRONMENT_ID
+      #     --project $OBSIDIAN_PROJECT_ID
+      #     --apikey $OBSIDIAN_API_KEY
+      #     --apisecret $OBSIDIAN_API_SECRET_KEY
+      #     --tags "unit, circleci"
                 
 workflows:
   version: 2
