@@ -30,3 +30,9 @@ jobs:
           path: ~/results
 
                 
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
+
