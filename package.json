@@ -1,0 +1,23 @@
+{
+  "name": "circle-mocha",
+  "version": "1.0.0",
+  "description": "This is an example test project for using circle ci to upload to Obsidian.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test --reporter mocha-obsidian-reporter --reporter-options mochaFile=./results/test-run.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanscottmalmoe/circle-mocha.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanscottmalmoe/circle-mocha/issues"
+  },
+  "homepage": "https://github.com/ryanscottmalmoe/circle-mocha#readme",
+  "dependencies": {
+    "mocha": "^8.3.2",
+    "mocha-obsidian-reporter": "^1.0.0"
+  }
+}
