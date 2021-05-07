@@ -37,7 +37,7 @@ jobs:
       - checkout
       - run: npm i
       - run: sudo npm i -g obsidian-cli
-      - run: obsidian testruns import results/test-run.json
+      - run: obsidian testruns import ~/results/test-run.json
           --environment $OBSIDIAN_ENVIRONMENT_ID
           --project $OBSIDIAN_PROJECT_ID
           --apikey $OBSIDIAN_API_KEY
