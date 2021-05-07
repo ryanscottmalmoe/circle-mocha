@@ -1,0 +1,51 @@
+# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
+version: 2.1
+
+orbs:
+  node: circleci/node@4.1
+
+jobs:
+  test:
+    docker:
+      - image: circleci/node:11.15.0
+    steps:
+      - checkout
+      - run: npm i
+      - run: sudo npm i -g mocha-obsidian-reporter mocha
+      - run: npm test
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - '*' 
+      - store_test_results:
+         path: results/test-run.json
+      - store_artifacts:
+          path: results/test-run.json
+
+  report:
+    docker:
+      - image: circleci/node:11.15.0
+    steps:
+      - checkout
+      - run: npm i
+      - run: sudo npm i -g obsidian-cli
+      - attach_workspace:
+          at: ~/
+      - run: obsidian testruns import results/test-run.json
+          --environment $OBSIDIAN_ENVIRONMENT_ID
+          --project $OBSIDIAN_PROJECT_ID
+          --apikey $OBSIDIAN_API_KEY
+          --apisecret $OBSIDIAN_API_SECRET_KEY
+          --tags "unit, circleci"
+                
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
+      - report:
+          requires:
+            - test
+          context:
+            - obsidian
+
