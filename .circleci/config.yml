@@ -13,5 +13,5 @@ workflows:
           # Relevant tags can be found on the CircleCI Developer Hub
           # https://circleci.com/developer/images/image/cimg/node
           steps:
-            - store_test_results
-              path: test-results
+            - store_test_results:
+                path: test-results
