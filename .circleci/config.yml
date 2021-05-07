@@ -20,7 +20,7 @@ jobs:
     steps:
       - checkout
       - run: npm i
-      - run: npm i -g mocha-obsidian-reporter
+      - run: npm i --prefix=$HOME/.local --global mocha-obsidian-reporter
       - run:
           command: npm test
           when: always
