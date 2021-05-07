@@ -19,6 +19,7 @@ jobs:
           path: results
       - store_artifacts:
           path: results
+          destination: test-run.json
 
   report:
     docker:
@@ -36,14 +37,6 @@ jobs:
           --apikey $OBSIDIAN_API_KEY
           --apisecret $OBSIDIAN_API_SECRET_KEY
           --tags "unit, circleci"
-      - run:
-          command: npm test
-          when: always
-      - store_test_results:
-          path: results
-      - store_artifacts:
-          path: results
-
                 
 workflows:
   version: 2
