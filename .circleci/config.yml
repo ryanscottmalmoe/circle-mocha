@@ -11,31 +11,16 @@ jobs:
     steps:
       - checkout
       - run: npm i
-      - run: sudo npm i -g mocha-obsidian-reporter mocha
-      - run: mkdir ~/results
-      - run:
-          command: mocha test --reporter mocha-obsidian-reporter
-          environment:
-            MOCHA_FILE: ~/results/test-run.json
-          when: always
+      - run: sudo npm i -g mocha-obsidian-reporter
+      - run: npm test
       - store_test_results:
-          path: ~/results
+          path: results
       - store_artifacts:
-          path: ~/results
-
-      # - run:
-      #     command: npm test
-      #     when: always
-      # - store_test_results:
-      #     path: results
-      # - store_artifacts:
-      #     path: results
+          path: results
 
   report:
     docker:
       - image: circleci/node:11.15.0
-    environment:
-      FOO: bar
     steps:
       - checkout
       - run: npm i
