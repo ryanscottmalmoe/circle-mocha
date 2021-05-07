@@ -19,7 +19,6 @@ jobs:
           path: results
       - store_artifacts:
           path: results
-          destination: test-run.json
 
   report:
     docker:
